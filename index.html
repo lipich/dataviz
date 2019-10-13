@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Dataviz</title>
+<link rel="icon" type="image/png" href="img/chart16.png" sizes="16x16">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(53100781, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/53100781" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	<a class="navbar-brand mb-0 h1" href="index.html"><img src="img/chart32.png" width="30" height="30" class="d-inline-block align-top" alt=""/><span class="ml-2">Dataviz</span></a>
+	<a class="nav-link ml-auto" href="about.html">О сервисе</a>
+</nav>
+<div class="container-fluid">
+	<div class="dropdown">
+		<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Выберите данные для отображения&nbsp;<img id="loader_counter" class="loader" src="img/loader.gif" style="display:none; width:20px;"/><span class="badge badge-light" id="counter_files"></span>
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="file_list"></div>
+	</div>
+	<div id="rows">
+		<img id="loader_list" class="loader mt-2" src="img/loader.gif" style="display:none;"/>
+		<div class="list-group mt-2" id="row_list"></div>
+	</div>
+	<div class="label" id="lblRowCounter"></div>
+	<div id="chart">
+		<img id="loader_data" class="loader" src="img/loader.gif" style="display:none;"/>
+		<div id="chart_data" class="p-3 border bg-light rounded"></div>
+	</div>
+	<div class="row no-gutters" style="display:none;">
+		<div class="col-md-auto"><span id="start_year" class="label_year">1950</span></div>
+		<div class="col">
+			<input type="range" class="custom-range" min="0" max="50" value="0" id="x_range_start">
+		</div>
+		<div class="col">
+			<input type="range" class="custom-range" min="0" max="50" value="50" id="x_range_end">
+		</div>
+		<div class="col-md-auto"><span id="end_year" class="label_year">2017</span></div>
+	</div>
+	<div id="share" class="mt-2">
+		<button type="button" class="btn btn-success" id="btnShare" onclick="showShareUrl()">Поделиться</button><a href="#" class="label" id="urlShare"></span>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

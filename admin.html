@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Dataviz admin</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="icon" type="image/png" href="img/chart16.png" sizes="16x16">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+	<a class="navbar-brand mb-0 h1" href="index.html" title="На главную страницу"><img src="img/chart32.png" width="30" height="30" class="d-inline-block align-top" alt=""><span class="ml-2">Dataviz</span></a>
+</nav>	
+<div class="container-fluid">
+	<p><h6 class="card-title">Файлы с данными <img id="loader_list" class="loader" src="img/loader.gif" style="display:none; width:20px;"/><span class="badge badge-secondary" id="counter_files"></span></h6></p>
+	<ul class="list-group" id="file_list"></ul>
+	<div class="mt-2">
+	<form action="server/upload_file.php" method="post" enctype="multipart/form-data">
+		<input class="btn btn-secondary" type="file" id="file_data" name="file_data" style="width: 350px" />
+		<div class="mt-2">
+			<input class="btn btn-success" type="submit" id="submit_upload" name="submit_upload" value="Загрузить" class="upload" />
+			<a href="#" class="btn btn-outline-warning" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">
+			Пример файла с данными
+			</a>
+		</div>
+		<div id="collapseData" class="collapse mt-2">
+			<div class="card card-body">
+		    <p class="sample_data">
+				Название данных<br />
+				Год;Показатель1;Показатель2<br />
+				2000;120.5;12<br />
+				2001;144;333<br />
+				2002;23;233.4<br />
+				2003;122;234<br />	
+				2004;12.9;53<br />
+				2005;1300;123<br />
+		    </p>
+			<p>
+				- расширение файла - <span class="sample">csv</span><br />
+				- максимальный размер файла - <span class="sample">32 мб</span><br />
+				- разделитель данных - <span class="sample">;</span><br />
+				- первая строка содержит название данных<br />
+				- вторая строка содержит названия рядов<br />
+				- третья строка и далее содержит данные рядов<br />
+				- значения первого ряда - <span class="sample">годы</span> или <span class="sample">целые числовые значения</span><br />
+				- значения остальных рядов - с разделителем дробной части <span class="sample">,</span> или <span class="sample">.</span>
+			</p>
+			</div>
+		</div>
+	</form>
+	</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
