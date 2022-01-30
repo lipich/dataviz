@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Dataviz admin</title>
+<link rel="icon" type="image/png" href="img/chart16.png" sizes="16x16">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <a class="navbar-brand mb-0 h1" href="index.html" title="На главную страницу"><img src="img/chart32.png" width="30" height="30" class="d-inline-block align-top" alt=""><span class="ml-2">Dataviz</span></a>
+</nav>	
+<main class="container-fluid">
+  <div id="alert_success" class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert">x</button>Файл успешно удален.</div>
+  <!-- список файлов -->
+  <div id="div_file_list">
+    <label for="file_list" class="label_header">Файлы с данными <img id="loader_list" class="loader" src="img/loader.gif" alt=""/><span class="badge badge-secondary" id="counter_files"></span></label>
+    <ul class="list-group" id="file_list"></ul>
+    <div class="mt-2">
+      <form action="server/upload_file.php" method="post" enctype="multipart/form-data">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="file_data" accept=".csv" />
+          <label class="custom-file-label" for="customFile">Выберите файл</label>
+        </div>
+        <!--<input class="btn btn-secondary" type="file" id="file_data" name="file_data"/>-->
+        <div class="mt-2">
+          <input class="btn btn-success" type="submit" id="submit_upload" name="submit_upload" value="Загрузить" />
+		      <a href="#" class="btn btn-info" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">Пример файла</a>
+        </div>
+        <div id="collapseData" class="collapse mt-2">
+        <div class="card card-body">
+        <p class="sample_data">
+          Название данных<br />
+          Год;Показатель1;Показатель2<br />
+          2000;120.5;12<br />
+          2001;144;333<br />
+          2002;23;233.4<br />
+          2003;122;234<br />	
+          2004;12.9;53<br />
+          2005;1300;123<br />
+        </p>
+        <p>
+          - расширение файла - <span class="sample">csv</span><br />
+          - максимальный размер файла - <span class="sample">32 мб</span><br />
+          - разделитель данных - <span class="sample">;</span><br />
+          - первая строка содержит название данных<br />
+          - вторая строка содержит названия рядов<br />
+          - третья строка и далее содержит данные рядов<br />
+          - значения первого ряда - <span class="sample">годы</span> или <span class="sample">целые числовые значения</span><br />
+          - значения остальных рядов - с разделителем дробной части <span class="sample">,</span> или <span class="sample">.</span>
+        </p>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- редактирование выбранного файла -->
+  <div id="div_file_edit">
+    <label for="file_edit" class="label_header">Редактирование файла</label>
+    <textarea class="form-control" id="file_edit" rows="10"></textarea>
+    <div class="mt-2">
+      <button type="button" class="btn btn-success btn-sm" id="btn_save_file">Сохранить</button>
+      <button type="button" class="btn btn-danger btn-sm" id="btn_cancel_files">Отмена</button>
+    </div>	
+  </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

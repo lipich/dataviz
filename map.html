@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+</head>
+<body>
+<div id="regions_div" style="width: 100%; height: 100%;"></div>
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {
+  'packages':['geochart'],
+  // Note: you will need to get a mapsApiKey for your project.
+  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+  'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+});
+google.charts.setOnLoadCallback(drawRegionsMap);
+
+function drawRegionsMap() {
+  var data = google.visualization.arrayToDataTable([
+    ['Страна', 'Население (млн)'],
+    ['Germany', 70],
+    ['United States', 300],
+    ['Brazil', 200],
+    ['Canada', 80],
+    ['France', 60],
+    ['Spain', 50],
+    ['Russia', 140],
+    ['England', 80],
+    ['Holland', 55],
+    ['Pakistan', 1000],
+    ['India', 1400],
+    ['China', 1500],
+    ['Ukraine', 55],
+    ['Chad', 20],
+    ['Somali', 10],
+    ['Japan', 130]
+  ]);
+  
+  var options = {
+    //region: '019',
+    //resolution: 'provinces'
+    colorAxis: {colors: ['#34e5eb', '#0000ff']}
+  };
+  var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+  chart.draw(data, options);
+}
+</script>
+</html>

@@ -1,0 +1,152 @@
+/* tag */
+body {
+  padding-top: 65px; 
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+a.delete {
+  color: red;
+}
+
+a.selected {
+  font-weight: bold;
+}
+
+img.loader {
+  width: 20px;
+  position: absolute;
+  top: 0; 
+  left: 0;
+  display: none;
+}
+
+p.bold {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+p.bold_header {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+table.main {
+  padding: 0px;	
+}
+
+tr.main_header {
+  font-weight: bold;	
+}
+
+table.file_list {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th.file_list, td.file_list {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table.data {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th.data, td.data {
+  text-align: right;
+  padding: 8px;
+}
+
+tr.data:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* class */
+.bootbox .modal-header {
+  flex-direction: row-reverse;
+}
+
+.bootbox .modal-title {
+  font-size: 1em;
+}
+
+.button {
+  text-decoration: underline;
+  color: blue;
+  cursor: hand;	
+}
+
+.header {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.listbox {
+  font-size: 1em;
+  font-family: Helvetica;
+}
+
+.label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  font-size: 1em;
+  font-weight: bold;
+  color: #428bca;
+  font-family: Helvetica;
+}
+
+.label_header {
+  font-size: 1em;
+  font-weight: bold;
+  font-family: Helvetica;
+}
+
+.label_year {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-link {
+  color: white;
+}
+
+.share_url {
+  width: 100%;
+  font-size: 1em;
+  font-family: Helvetica;
+  color: gray;
+}
+
+.sample {
+  font-weight: bold;
+  color: red;
+}
+
+.sample_data {
+  font-weight: 100;
+  color: gray;
+}
+
+.separator {
+  height: 10px;
+}
+
+.uploadLink {
+  color: gray;	
+}
+
+/* ID */
+#file_data {
+  width: 20vw;
+}
+
+#div_file_edit {
+  display: none;
+}
