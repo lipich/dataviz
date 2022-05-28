@@ -1,4 +1,4 @@
-// инициализация страницы
+// page init
 $(function() {
   google.charts.load('current', {'packages': ['corechart', 'line'], 'language': 'ru'});
   google.charts.load('current', {'packages': ['corechart', 'bar'], 'language': 'ru'});
@@ -6,7 +6,7 @@ $(function() {
   //google.charts.load('current', {'packages':['geochart'], 'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'});
 });
 
-// получить параметры URL 
+// get URL parameters 
 function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1);
   var sURLVariables = sPageURL.split('&');
@@ -20,22 +20,22 @@ function getUrlParameter(sParam) {
   }
 }
 
-// страница загружена
+// page loaded
 $(document).ready(function() {
-  // отключить кеширование
+  // disable caching
   $.ajaxSetup({'cache': false});
 
-  // очистить страницу
+  // clear bin
   $('#row_list').hide();
   hideChart();
   hideShare();
 
-  // отключить состояние загрузки
+  // disable loading state
   localStorage.setItem('loading_files', 'false');
   localStorage.setItem('loading_rows', 'false');
   localStorage.setItem('loading_data', 'false');
 
-  // получить параметры url
+  // get url parameters
   var file = getUrlParameter('file');
   localStorage.setItem('qs_file', file);
 
@@ -69,13 +69,13 @@ $(document).ready(function() {
     $('#btn_data_delta').addClass('btn-primary');
   }
   
-  // инициализировать переменную "ссылка для публикации" 
+  // initialize variable "share link" 
   localStorage.setItem('share_url', "");	
     
-  // загрузить список файлов
+  // load files list
   loadFileList();
 
-  // slider оси х
+  // x-axis slider
   var slider = document.getElementById("xRange");
   //var output = document.getElementById("xValue");
   //output.innerHTML = slider.value;
@@ -87,7 +87,7 @@ $(document).ready(function() {
   }
 });
 
-// обновление графика при изменении окна браузера 
+// updating the graph when the browser window changes 
 var chart_refresh = "done";
 
 $(window).resize(function() {
@@ -97,20 +97,20 @@ $(window).resize(function() {
   }
 });
 
-// загрузить список файлов данных
+// load list of data files
 function loadFileList() {
-  var delimiter = "<%%%>"; // разделитель названия ряда и имени файла с данными в массиве
+  var delimiter = "<%%%>"; // separator between the series name and the file name with data in the array
 
-  // включить состояние загрузки
+  // enable download state
   localStorage.setItem('loading_files', 'true');
 
-  // таймаут для отображения индикатора загрузки
+  // timeout for displaying the loading indicator
   setTimeout(function() {
     var loading = localStorage.getItem('loading_files');
     if (loading == 'true') $('#loader_counter').show();
   }, 1000);
 
-  // получить список файлов
+  // get files list
   $.getJSON('server/get_file_list.php', 
   function(data) {
     if (!data.res) {
@@ -126,20 +126,20 @@ function loadFileList() {
       });
 
       select.append('<div class="dropdown-divider"></div>');
-      select.append('<a class="dropdown-item" href="admin.html"><button type="button" class="btn btn-primary">Добавить</button></a>');
+      select.append('<a class="dropdown-item" href="admin.html"><button type="button" class="btn btn-primary">Add data</button></a>');
     } else {
       bootbox.alert(data.res);
     }
 
-    // выключить состояние загрузки
+    // turn off loading state
     $('#loader_counter').hide();
     localStorage.setItem('loading_files', 'false');
  
-    // выбрать указанный файл
+    // select the specified file
     setTimeout(function() {
       var selected = localStorage.getItem('qs_file');
       
-      // если файл не указан выберем случайный
+      // if the file is not specified, choose a random one
       if (selected === "undefined") {
         selectedIndex = Math.floor((Math.random() * data.data.length));
         arrItem = data.data[selectedIndex].split(delimiter);
@@ -155,9 +155,9 @@ function loadFileList() {
   });
 }
 
-// загрузить список рядов из файла данных
+// load series list from data file
 function loadRowList(file, text) {
-  // включить состояние загрузки
+  // enable loading state
   localStorage.setItem('loading_rows', 'true');
 
   setTimeout(function() {
@@ -165,7 +165,7 @@ function loadRowList(file, text) {
     if (loading == 'true') $('#loader_list').show();
   }, 1000);
 
-  // очистить список рядов, график, ссылку поделиться и количество выбранных рядов
+  // clear row list, graph, share link and number of selected rows
   $('#row_list').empty();
   hideStatusSelected();
   hideChart();
@@ -177,7 +177,7 @@ function loadRowList(file, text) {
   localStorage.setItem('init_slider', 'true');
   loadSlider();
   
-  // получить список рядов из файла
+  // get list of rows from file
   $.getJSON('server/get_row_list.php', {
     file: String(file)
   },
@@ -197,15 +197,15 @@ function loadRowList(file, text) {
       bootbox.alert(data.res);
     }
 
-    // выключить состояние загрузки
+    // disable loading state
     $('#loader_list').hide();
     localStorage.setItem('loading_rows', 'false');
 
-    // выбрать указанные ряды
+    // select specified rows
     setTimeout(function() {
       var selected = localStorage.getItem('qs_row');	
 
-      // если ряды не указаны выберем первый
+      // if the rows are not specified, choose the first one
       if (selected === "undefined") selected = "1";
       if (!selected) selected = "1";
 
@@ -221,7 +221,7 @@ function loadRowList(file, text) {
   $('#dropdownMenuButton').text(text);
   $('#row_list').show();
 
-  // сформировать ссылку "поделиться"
+  // create a share link
   var arrFile = file.split(".");
   var shareUrl = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
   if (window.location.pathname.indexOf("index.html") == -1) shareUrl += "index.html";
@@ -229,10 +229,10 @@ function loadRowList(file, text) {
   localStorage.setItem('share_url', shareUrl);
 }
 
-// загрузить данные по выбранным рядам
+// load data for selected rows
 function loadRowData(row, rowName)
 {
-  // включить состояние загрузки
+  // enable loading state
   localStorage.setItem('loading_data', 'true');
 
   setTimeout(function() {
@@ -240,7 +240,7 @@ function loadRowData(row, rowName)
     if (loading == 'true') $('#loader_data').show();
   }, 1000);
 
-  // если передан новый ряд, обновить список выбранных рядов
+  // if a new row is passed, update the list of selected rows
   if (row) {
     var rl = $('#rl_' + row);
   
@@ -249,7 +249,7 @@ function loadRowData(row, rowName)
     else
       rl.addClass('active');
 
-    // загрузить выбранные коды рядов
+    // download selected row codes
     var arrRow = localStorage.getItem('s_row').split(",");
   
     if (arrRow[0] == "") arrRow.splice(0, 1);
@@ -266,13 +266,13 @@ function loadRowData(row, rowName)
 
     showStatusSelected(arrRow.length);
     if (arrRow.length == 0) {
-      // выключить состояние загрузки
+      // disable loading state
       $('#loader_data').hide();
       localStorage.setItem('loading_data', 'false');
       hideShare();
     }
   
-    // загрузить выбранные названия рядов
+    // load selected series titles
     var arrRow = localStorage.getItem('n_row').split(",");
 
     if (arrRow[0] == "") arrRow.splice(0, 1);
@@ -287,7 +287,7 @@ function loadRowData(row, rowName)
     localStorage.setItem('n_row', nRow);
   }
   
-  // получить данные по выбранным рядам
+  // get data for selected rows
   $.getJSON('server/get_row_data.php', {
     file: localStorage.getItem('s_file'),
     rows: localStorage.getItem('s_row'),
@@ -307,7 +307,7 @@ function loadRowData(row, rowName)
       }
       localStorage.setItem('init_slider', 'false')
 	  
-      // сформировать ссылку "поделиться"
+      // create a share link
       var arrShareUrl = localStorage.getItem('share_url').split("&");
       var sRow = localStorage.getItem('s_row')
       if (sRow == "") {
@@ -321,13 +321,13 @@ function loadRowData(row, rowName)
       bootbox.alert(data.res);
     }
     
-    // выключить состояние загрузки
+    // disable loading state
     $('#loader_data').hide();
     localStorage.setItem('loading_data', 'false');
   });    
 }
 
-// загрузить график
+// load chart
 function loadChart(type, arrData) {
   var data = new google.visualization.DataTable();
 
@@ -341,7 +341,7 @@ function loadChart(type, arrData) {
 
   data.addRows(arrData);
 
-  // настройки области отображения графика
+  // graph display area settings
   var s_indent_h = 30;
   var s_indent_w = 100;
   
@@ -388,7 +388,7 @@ function loadChart(type, arrData) {
   chart.draw(data, options);
 }
 
-// переключить на linechart
+// switch to linechart
 $('#btn_line_chart').on('click', function() {
   if (localStorage.getItem('chart_type') == 'bar') {
     localStorage.setItem('chart_type', 'line');
@@ -399,7 +399,7 @@ $('#btn_line_chart').on('click', function() {
   }
 });
 
-// переключить на barchart
+// switch to barchart
 $('#btn_bar_chart').on('click', function() {
   if (localStorage.getItem('chart_type') == 'line') {
     localStorage.setItem('chart_type', 'bar');
@@ -410,7 +410,7 @@ $('#btn_bar_chart').on('click', function() {
   }
 });
 
-// переключить на отображение дельты значений
+// switch to delta
 $('#btn_data_delta').on('click', function() {
   if (localStorage.getItem('chart_delta') == 'false') {
     localStorage.setItem('chart_delta', 'true');
@@ -423,12 +423,12 @@ $('#btn_data_delta').on('click', function() {
   loadRowData();
 });
 
-// загрузить слайдер
+// load slider
 function loadSlider(xMax) {  
   var x = 1000000;
   if (xMax) x = xMax;
   
-  // инициализировать диапазон отражаемых значений оси Х
+  // initialize the range of displayed values of the x-axis
   localStorage.setItem('start_x', "0");	
   localStorage.setItem('end_x', x);	
   
@@ -438,7 +438,7 @@ function loadSlider(xMax) {
   slider.value = x;
 }
 
-// загрузить карту
+// load map
 function loadMap(arrData) {
   var data = google.visualization.arrayToDataTable([
     ['Страна', 'Население (млн)'],
@@ -462,35 +462,35 @@ function loadMap(arrData) {
   chart.draw(data, options);
 }
 
-// скрыть график
+// hide chart
 function hideChart() {
   $('#chart_data').hide();
   $('#chart_options').hide();
 }
 
-// показать сколько выбрано рядов
+// show how many rows are selected
 function showStatusSelected(sRow) {
   var qRow = localStorage.getItem('q_row');
   
   if (sRow == 0) 
-    $('#lblRowCounter').text("Всего рядов: " + qRow);   
+    $('#lblRowCounter').text("Total rows: " + qRow);   
   else 
-    $('#lblRowCounter').text("Выбрано: " + sRow + " из " + qRow);
+    $('#lblRowCounter').text("Selected: " + sRow + " of " + qRow);
 }
 
-// скрыть сколько выбрано рядов
+// hide rows counter
 function hideStatusSelected() {
   $('#lblRowCounter').text("");
 }
 
-// показать ссылку "поделиться"
+// show share link
 function showShare() {
   $('#urlShare').attr('href', localStorage.getItem('share_url'));
   $('#urlShare').show();
   $('#xRange').show();
 }
 
-// скрыть ссылку "поделиться" 
+// hide share link 
 function hideShare() {
   $('#urlShare').hide();
   $('#xRange').hide();

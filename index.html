@@ -26,38 +26,38 @@
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <a class="navbar-brand mb-0 h1" href="index.html"><img src="img/chart32.png" width="30" height="30" class="d-inline-block align-top" alt=""/><span class="ml-2">Dataviz</span></a>
-  <a class="nav-link ml-auto" href="about.html">О сервисе</a>
+  <a class="nav-link ml-auto" href="about.html">About</a>
 </nav>
 <main class="container-fluid">
-  <!-- список файлов -->
+  <!-- files list -->
   <div id="files" class="dropdown">
     <button class="btn btn-warning dropdown-toggle text-left" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Выберите данные для отображения&nbsp;<img id="loader_counter" class="loader" src="img/loader.gif" alt=""/><span class="badge badge-light" id="counter_files"></span>
+      Choose data for view&nbsp;<img id="loader_counter" class="loader" src="img/loader.gif" alt=""/><span class="badge badge-light" id="counter_files"></span>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="file_list"></div>
   </div>
-  <!-- список рядов внутри файла -->
+  <!-- row list in file -->
   <div id="rows">
     <img id="loader_list" class="loader mt-2" src="img/loader.gif" alt=""/>
     <div class="list-group mt-2" id="row_list"></div>
   </div>
-  <!-- счетчик рядов -->
+  <!-- row counter -->
   <div class="mt-2 d-flex">
     <div id="lblRowCounter" class="label mr-auto p-2"></div>
     <div id="chart_options" class="p-2">
-      <button type="button" class="btn btn-primary btn-sm" id="btn_line_chart" title="Линейный график"><i class="fas fa-chart-line"></i></button>
-      <button type="button" class="btn btn-secondary btn-sm" id="btn_bar_chart" title="Столбцовая диаграмма"><i class="fas fa-chart-bar"></i></button>
-      <button type="button" class="btn btn-secondary btn-sm" id="btn_data_delta" title="Показать динамику изменения величины"><i class="fas fa-chart-area"></i></button>
+      <button type="button" class="btn btn-primary btn-sm" id="btn_line_chart" title="Line chart"><i class="fas fa-chart-line"></i></button>
+      <button type="button" class="btn btn-secondary btn-sm" id="btn_bar_chart" title="Bar chart"><i class="fas fa-chart-bar"></i></button>
+      <button type="button" class="btn btn-secondary btn-sm" id="btn_data_delta" title="Change dynamics"><i class="fas fa-chart-area"></i></button>
     </div>
   </div>
-  <!-- график -->
+  <!-- chart -->
   <div id="chart" class="content">
     <img id="loader_data" class="loader" src="img/loader.gif" alt=""/>
     <div id="chart_data" class="p-3 border bg-light rounded"></div>
   </div>
-  <!-- ссылка на выбранные данные -->
+  <!-- link for selected data -->
   <div id="share" class="mt-2 d-flex">
-    <a href="#" class="btn btn-link" id="urlShare">Поделиться</a>
+    <a href="#" class="btn btn-link" id="urlShare">Share</a>
     <input type="range" min="1" max="100" value="100" class="mt-2 custom-range" id="xRange">
     <!--<span id="xValue"></span>-->
   </div>

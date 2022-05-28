@@ -1,4 +1,4 @@
-// страница загружена
+// page loaded
 $(document).ready(function() {
   $.ajaxSetup({'cache': false});
   
@@ -7,20 +7,20 @@ $(document).ready(function() {
   loadFileList();
 });
 
-// загрузить список файлов данных
+// load file list
 function loadFileList() {
-  var delimiter = "<%%%>"; // разделитель названия ряда и имени файла с данными в массиве
+  var delimiter = "<%%%>"; // separator between the series name and the file name with data in the array
 
-  // включить состояние загрузки
+  // enable loading state
   localStorage.setItem('loading_files', 'true');
   
-  // таймаут для отображения индикатора загрузки
+  // timeout for displaying the loading indicator
   setTimeout(function() {
     var loading = localStorage.getItem('loading_files');
     if (loading == 'true') $('#loader_list').show();
   }, 1000);
   
-  // получить список файлов
+  // get files list
   $.getJSON('server/get_file_list.php',
   function(data) {
     if (!data.res) {
@@ -52,7 +52,7 @@ function loadFileList() {
   }); 
 }
 
-// получить содержимое файла
+// get file content
 function getFileContent(fileName, password) {
   $.getJSON('server/get_file_content.php',
   {
@@ -70,7 +70,7 @@ function getFileContent(fileName, password) {
   });
 }
 
-// удалить файл
+// delete file
 function deleteFile(fileName, password) {
   $.getJSON('server/delete_file.php', 
   {
@@ -90,7 +90,7 @@ function deleteFile(fileName, password) {
   });
 }
 
-// нажатие на кнопку редактировать/удалить
+// clicking on the edit/delete button
 $('#file_list').on('click', 'button', function() {
   event.preventDefault();
   
@@ -118,13 +118,13 @@ $('#file_list').on('click', 'button', function() {
   });
 });
 
-// нажатие на кнопку отмена
+// pressing the cancel button
 $('#btn_cancel_files').on('click', function() {
   $('#div_file_list').show();
   $('#div_file_edit').hide();
 });
 
-// выбор файла для загрузки
+// select file for upload
 $('.custom-file-input').on('change', function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings('.custom-file-label').addClass('selected').html(fileName);

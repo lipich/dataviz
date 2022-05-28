@@ -12,30 +12,30 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-  <a class="navbar-brand mb-0 h1" href="index.html" title="На главную страницу"><img src="img/chart32.png" width="30" height="30" class="d-inline-block align-top" alt=""><span class="ml-2">Dataviz</span></a>
+  <a class="navbar-brand mb-0 h1" href="index.html" title="Return to main page"><img src="img/chart32.png" width="30" height="30" class="d-inline-block align-top" alt=""><span class="ml-2">Dataviz</span></a>
 </nav>	
 <main class="container-fluid">
-  <div id="alert_success" class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert">x</button>Файл успешно удален.</div>
-  <!-- список файлов -->
+  <div id="alert_success" class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert">x</button>File deleted successfully.</div>
+  <!-- files list -->
   <div id="div_file_list">
-    <label for="file_list" class="label_header">Файлы с данными <img id="loader_list" class="loader" src="img/loader.gif" alt=""/><span class="badge badge-secondary" id="counter_files"></span></label>
+    <label for="file_list" class="label_header">Files with data <img id="loader_list" class="loader" src="img/loader.gif" alt=""/><span class="badge badge-secondary" id="counter_files"></span></label>
     <ul class="list-group" id="file_list"></ul>
     <div class="mt-2">
       <form action="server/upload_file.php" method="post" enctype="multipart/form-data">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="file_data" accept=".csv" />
-          <label class="custom-file-label" for="customFile">Выберите файл</label>
+          <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <!--<input class="btn btn-secondary" type="file" id="file_data" name="file_data"/>-->
         <div class="mt-2">
-          <input class="btn btn-success" type="submit" id="submit_upload" name="submit_upload" value="Загрузить" />
-		      <a href="#" class="btn btn-info" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">Пример файла</a>
+          <input class="btn btn-success" type="submit" id="submit_upload" name="submit_upload" value="Upload" />
+		      <a href="#" class="btn btn-info" data-toggle="collapse" data-target="#collapseData" aria-expanded="false" aria-controls="collapseData">Data file sample</a>
         </div>
         <div id="collapseData" class="collapse mt-2">
         <div class="card card-body">
         <p class="sample_data">
-          Название данных<br />
-          Год;Показатель1;Показатель2<br />
+          Data name<br />
+          Year;Index1;Index2<br />
           2000;120.5;12<br />
           2001;144;333<br />
           2002;23;233.4<br />
@@ -44,27 +44,27 @@
           2005;1300;123<br />
         </p>
         <p>
-          - расширение файла - <span class="sample">csv</span><br />
-          - максимальный размер файла - <span class="sample">32 мб</span><br />
-          - разделитель данных - <span class="sample">;</span><br />
-          - первая строка содержит название данных<br />
-          - вторая строка содержит названия рядов<br />
-          - третья строка и далее содержит данные рядов<br />
-          - значения первого ряда - <span class="sample">годы</span> или <span class="sample">целые числовые значения</span><br />
-          - значения остальных рядов - с разделителем дробной части <span class="sample">,</span> или <span class="sample">.</span>
+          - file extension - <span class="sample">csv</span><br />
+          - max file size - <span class="sample">32 мб</span><br />
+          - delimiter - <span class="sample">;</span><br />
+          - first line contains name of data<br />
+          - second line contains name of rows<br />
+          - third line and above lines contains data<br />
+          - first row values - <span class="sample">years</span> or <span class="sample">integer numeric values</span><br />
+          - the values of the remaining rows - with a decimal separator <span class="sample">,</span> or <span class="sample">.</span>
         </p>
         </div>
         </div>
       </form>
     </div>
   </div>
-  <!-- редактирование выбранного файла -->
+  <!-- selected file editing -->
   <div id="div_file_edit">
-    <label for="file_edit" class="label_header">Редактирование файла</label>
+    <label for="file_edit" class="label_header">File editing</label>
     <textarea class="form-control" id="file_edit" rows="10"></textarea>
     <div class="mt-2">
-      <button type="button" class="btn btn-success btn-sm" id="btn_save_file">Сохранить</button>
-      <button type="button" class="btn btn-danger btn-sm" id="btn_cancel_files">Отмена</button>
+      <button type="button" class="btn btn-success btn-sm" id="btn_save_file">Save</button>
+      <button type="button" class="btn btn-danger btn-sm" id="btn_cancel_files">Cancel</button>
     </div>	
   </div>
 </main>
