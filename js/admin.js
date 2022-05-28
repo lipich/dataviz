@@ -99,7 +99,7 @@ $('#file_list').on('click', 'button', function() {
   var file = elem.attr('id').substring(4);
   
   bootbox.prompt({
-    title: "Введите пароль:",
+    title: "Password:",
     inputType: 'password',
     callback: function(result) {
       if (result) {

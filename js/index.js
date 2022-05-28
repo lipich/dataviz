@@ -28,7 +28,6 @@ $(document).ready(function() {
   // clear bin
   $('#row_list').hide();
   hideChart();
-  hideShare();
 
   // disable loading state
   localStorage.setItem('loading_files', 'false');
@@ -69,7 +68,7 @@ $(document).ready(function() {
     $('#btn_data_delta').addClass('btn-primary');
   }
   
-  // initialize variable "share link" 
+  // init share url 
   localStorage.setItem('share_url', "");	
     
   // load files list
@@ -169,7 +168,6 @@ function loadRowList(file, text) {
   $('#row_list').empty();
   hideStatusSelected();
   hideChart();
-  hideShare();
 
   localStorage.setItem('s_file', file);
   localStorage.setItem('s_row', "");	
@@ -269,7 +267,6 @@ function loadRowData(row, rowName)
       // disable loading state
       $('#loader_data').hide();
       localStorage.setItem('loading_data', 'false');
-      hideShare();
     }
   
     // load selected series titles
@@ -312,10 +309,8 @@ function loadRowData(row, rowName)
       var sRow = localStorage.getItem('s_row')
       if (sRow == "") {
         localStorage.setItem('share_url', arrShareUrl[0]);
-        hideShare();
       } else {
         localStorage.setItem('share_url', arrShareUrl[0] + "&row=" + sRow + "&chart_type=" + chartType + "&chart_delta=" + chartDelta);
-        showShare();
       }
     } else {
       bootbox.alert(data.res);
@@ -386,6 +381,7 @@ function loadChart(type, arrData) {
   }
 
   chart.draw(data, options);
+  $('#xRange').show();
 }
 
 // switch to linechart
@@ -421,6 +417,14 @@ $('#btn_data_delta').on('click', function() {
   }
 
   loadRowData();
+});
+
+// show share link
+$('#btn_share').on('click', function() {
+  bootbox.alert({
+    title: "Share link",
+    message: localStorage.getItem('share_url')
+  });
 });
 
 // load slider
@@ -466,6 +470,7 @@ function loadMap(arrData) {
 function hideChart() {
   $('#chart_data').hide();
   $('#chart_options').hide();
+  $('#xRange').hide();
 }
 
 // show how many rows are selected
@@ -481,17 +486,4 @@ function showStatusSelected(sRow) {
 // hide rows counter
 function hideStatusSelected() {
   $('#lblRowCounter').text("");
-}
-
-// show share link
-function showShare() {
-  $('#urlShare').attr('href', localStorage.getItem('share_url'));
-  $('#urlShare').show();
-  $('#xRange').show();
-}
-
-// hide share link 
-function hideShare() {
-  $('#urlShare').hide();
-  $('#xRange').hide();
 }
