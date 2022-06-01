@@ -421,9 +421,10 @@ $('#btn_data_delta').on('click', function() {
 
 // show share link
 $('#btn_share').on('click', function() {
+  var link = localStorage.getItem('share_url');
   bootbox.alert({
     title: "Share link",
-    message: localStorage.getItem('share_url')
+    message: "<a href='" + link + "'>" + link + "</a>"
   });
 });
 
