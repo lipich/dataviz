@@ -1,2 +1,2 @@
-# dataviz
+# Dataviz
 Data visualization project
