@@ -25,7 +25,8 @@ function GetRowData($file, $rows, $start_x, $end_x, $delta)
 	$arrRes = array();
 	$arrBuf = array();
 	
-	try {
+	try 
+	{
 		$arrRows = explode(",", $rows); 
 		$i = 0;
 	
@@ -33,48 +34,63 @@ function GetRowData($file, $rows, $start_x, $end_x, $delta)
 		
 		$row = fgetcsv($handle, 0, ";");
 		$row = fgetcsv($handle, 0, ";");
-		while (($row = fgetcsv($handle, 0, ";")) != false) {	
+		while (($row = fgetcsv($handle, 0, ";")) != false) 
+		{	
 			$j = 0;
 			
-			if (($i >= $start_x) && ($i <= $end_x)) {
-				foreach ($arrRows as $rowIndex) {
+			if (($i >= $start_x) && ($i <= $end_x)) 
+			{
+				foreach ($arrRows as $rowIndex) 
+				{
 					$arrBuf[$i][$j] = str_replace(",", ".", $row[$rowIndex]);
 					
 					// если не key values
-					if ($j != 0) {
-					  // если нужно передавать изменения между значениями (дельту), а не сами значения
-					  if ($delta == "true") {  
-              // для значений со второго столбца берем дельту
-					    if (($i > $start_x) && ($i <= $end_x)) {
-                // если значения соседних столбцов не пустые
-                if (($arrBuf[$i][$j] != "") && ($arrBuf[$i - 1][$j] != "")) {
-                  $arrRes[$i][$j] = (double)($arrBuf[$i][$j] - $arrBuf[$i - 1][$j]);
-                } else {
-                  // если пустые, то без дельты -- todo придумать как убрать первый столбец
-                  $arrRes[$i][$j] = $arrBuf[$i][$j] == "" ? NULL : (double)$arrBuf[$i][$j];
-                }  
-              } else {
-                // для первого столбца при дельте значения нет
-						    $arrRes[$i][$j] = NULL;
-              }              
-            } else {
-              // если не нужно передавать дельту
-						  $arrRes[$i][$j] = $arrBuf[$i][$j] == "" ? NULL : (double)$arrBuf[$i][$j];            
-            }
-					} else {
-  					$arrRes[$i][$j] = $arrBuf[$i][$j];
+					if ($j != 0) 
+					{
+					    // если нужно передавать изменения между значениями (дельту), а не сами значения
+					    if ($delta == "true") 
+						{  
+                            // для значений со второго столбца берем дельту
+					        if (($i > $start_x) && ($i <= $end_x))
+							{
+                                // если значения соседних столбцов не пустые
+                                if (($arrBuf[$i][$j] != "") && ($arrBuf[$i - 1][$j] != "")) 
+								{
+                                    $arrRes[$i][$j] = (double)($arrBuf[$i][$j] - $arrBuf[$i - 1][$j]);
+                                } 
+								else 
+								{
+                                    // если пустые, то без дельты -- todo придумать как убрать первый столбец
+                                    $arrRes[$i][$j] = $arrBuf[$i][$j] == "" ? NULL : (double)$arrBuf[$i][$j];
+                                }  
+                            } 
+							else 
+							{
+                                // для первого столбца при дельте значения нет
+						        $arrRes[$i][$j] = NULL;
+                            }              
+                        } 
+						else 
+						{
+                            // если не нужно передавать дельту
+						    $arrRes[$i][$j] = $arrBuf[$i][$j] == "" ? NULL : (double)$arrBuf[$i][$j];            
+                        }
+					} 
+					else 
+					{
+  					    $arrRes[$i][$j] = $arrBuf[$i][$j];
 					}
-																
+											
 					$j++;
 				}
-			
+
 				$i++;
 			}
 		}
 							
 		fclose($handle);
 
-    return array($arrRes, null);
+        return array($arrRes, null);
 	}
 	catch (Exception $e)
 	{

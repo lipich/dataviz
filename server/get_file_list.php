@@ -20,9 +20,6 @@ function GetFileList($storage)
 			
 			$handle = fopen($storage . $file, "r");
 			$row = implode(fgetcsv($handle, 0, ";")); 
-			
-	        //$files[$i][0] = $file;
-	        //$files[$i][1] = $row;
 	
 			$files[$i] = $row . "<%%%>" . $file; // для удобства сортировки перешел на одномерный массив
 			
@@ -51,17 +48,22 @@ function ruSort($a, $b)
 
     for ($i = 0; $i < mb_strlen($a); $i++) 
     {
-        if (mb_substr($a, $i, 1) == mb_substr($b, $i, 1)) {
+        if (mb_substr($a, $i, 1) == mb_substr($b, $i, 1)) 
+        {
             continue;
         }
         
-        if ($i > mb_strlen($b)) {
+        if ($i > mb_strlen($b)) 
+        {
             return 1;
         }
         
-        if (mb_strpos($alphabet, mb_substr($a, $i, 1)) > mb_strpos($alphabet, mb_substr($b, $i, 1))) {
+        if (mb_strpos($alphabet, mb_substr($a, $i, 1)) > mb_strpos($alphabet, mb_substr($b, $i, 1))) 
+        {
             return 1;
-        } else {
+        } 
+        else 
+        {
             return -1;
         }
     }

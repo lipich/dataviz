@@ -5,10 +5,14 @@ $file = $storage . $_GET['file'];
 $file_thrash = $storage . "_" . substr($_GET['file'], 0, -4) . "_" . date('m-d-Y-His') . ".csv";
 $password = $_GET['password'];
 
-if ($password === $delete_password) 
+if ($password === $delete_password)
+{
 	$res = DeleteFile($file, $file_thrash);
-else 
+}
+else
+{ 
 	$res = "Неверный пароль!";
+}
 
 echo json_encode($res);
 
@@ -22,8 +26,10 @@ function DeleteFile($file, $file_thrash)
 			rename($file, $file_thrash);
 		}
 		else
+		{
 			return "Указанного файла не существует";
-
+		}
+		
 		return null;
 	}
 	catch (Exception $e)

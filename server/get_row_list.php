@@ -23,8 +23,6 @@ function GetRowList($file)
 		
 		unset($row[0]);					
 		fclose($handle);
-
-		//sort($row);
 		
     	return array($row, null);
 	}
@@ -34,4 +32,3 @@ function GetRowList($file)
 	}
 }
 ?>
- 
