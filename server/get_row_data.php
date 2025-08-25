@@ -32,9 +32,9 @@ function GetRowData($file, $rows, $start_x, $end_x, $delta)
 	
 		$handle = fopen($file, "r");
 		
-		$row = fgetcsv($handle, 0, ";");
-		$row = fgetcsv($handle, 0, ";");
-		while (($row = fgetcsv($handle, 0, ";")) != false) 
+		$row = fgetcsv($handle, 0, ";", "\"", "\\");
+		$row = fgetcsv($handle, 0, ";", "\"", "\\");
+		while (($row = fgetcsv($handle, 0, ";", "\"", "\\")) != false) 
 		{	
 			$j = 0;
 			

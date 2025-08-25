@@ -19,7 +19,7 @@ function GetFileList($storage)
 	        if ($file[0] == "_") continue;
 			
 			$handle = fopen($storage . $file, "r");
-			$row = implode(fgetcsv($handle, 0, ";")); 
+			$row = implode(fgetcsv($handle, 0, ";", "\"", "\\")); 
 	
 			$files[$i] = $row . "<%%%>" . $file; // для удобства сортировки перешел на одномерный массив
 			

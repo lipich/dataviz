@@ -18,8 +18,8 @@ function GetRowList($file)
 	{
 		$handle = fopen($file, "r");
 		
-		$row = fgetcsv($handle, 0, ";");
-		$row = fgetcsv($handle, 0, ";"); 
+		$row = fgetcsv($handle, 0, ";", "\"", "\\");
+		$row = fgetcsv($handle, 0, ";", "\"", "\\"); 
 		
 		unset($row[0]);					
 		fclose($handle);
