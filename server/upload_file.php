@@ -16,13 +16,13 @@ try
 				if ($_FILES['file_data']['size'] > $max_file_size) 
 				{
 					unlink($_FILES['file_data']['tmp_name']);
-					die($html_start . "Max file size = 32МБ" . $html_end);
+					die($html_start . "Превышен максимальный размер файла 32МБ" . $html_end);
 				}
 
 				if (substr($_FILES['file_data']['name'], -4) != ".csv") 
 				{
 					unlink($_FILES['file_data']['tmp_name']);
-					die($html_start . "Accepted file type - csv" . $html_end);
+					die($html_start . "Недопустимый тип файла. Допустимы только файлы с расширением .csv" . $html_end);
 				}
 				
 				$file = $storage . $_FILES['file_data']['name'];
@@ -33,7 +33,7 @@ try
 			}
 			else
 			{
-				die($html_start . "Error loading file: " . $_FILES['file_data']['error'] . $html_end);
+				die($html_start . "Ошибка загрузки файла: " . $_FILES['file_data']['error'] . $html_end);
 			}
 		}
 	}
@@ -42,7 +42,7 @@ try
 }
 catch (Exception $e)
 {
-	die($html_start . "Error loading file: " . $e->getMessage() . $html_end);		
+	die($html_start . "Ошибка загрузки файла: " . $e->getMessage() . $html_end);		
 }
 
 // генерация имени файла 

@@ -13,7 +13,7 @@ if ($password === $delete_password)
 }
 else 
 {
-	  $res = "Неверный пароль!";
+	$res = "Неверный пароль!";
     echo json_encode($res);
 }
 ?>
